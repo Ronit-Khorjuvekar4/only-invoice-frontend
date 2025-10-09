@@ -4,18 +4,21 @@ import Link from "next/link";
 import { Container, Typography, Button, Box, Paper, Grid, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
 import { ClientInterface } from "@/utils/types";
 import { Add as AddIcon, Phone as PhoneIcon, Email as EmailIcon, Business as BusinessIcon } from '@mui/icons-material';
+import { useRouter } from 'next/navigation'
 
 const ClientListing = ({ clients }: { clients: ClientInterface[] }) => {
     const [hasMounted, setHasMounted] = useState(false);
+
+    const router = useRouter()
 
     useEffect(() => {
         setHasMounted(true);
     }, []);
 
     if (!hasMounted) {
-        return null; 
+        return null;
     }
-    
+
     return (
         <Container maxWidth="lg" sx={{ pt: 3, pb: 5 }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
@@ -23,11 +26,11 @@ const ClientListing = ({ clients }: { clients: ClientInterface[] }) => {
                     Client List
                 </Typography>
                 <Link href="/add-client" passHref style={{ textDecoration: 'none' }}>
-                    <Button 
-                        variant="contained" 
-                        color="primary" 
+                    <Button
+                        variant="contained"
+                        color="primary"
                         startIcon={<AddIcon />}
-                        size="medium" 
+                        size="medium"
                     >
                         New Client
                     </Button>
@@ -47,11 +50,16 @@ const ClientListing = ({ clients }: { clients: ClientInterface[] }) => {
                             </TableHead>
                             <TableBody>
                                 {clients.map((client) => (
-                                    <TableRow 
-                                        key={client._id.toString()} 
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 }, '&:hover': { backgroundColor: 'action.hover' } }}
+
+                                    <TableRow
+                                        key={client._id.toString()}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 }, '&:hover': { backgroundColor: 'action.hover', cursor:'pointer' } }}
+                                        onClick={() => router.push(`/all-invoices?client_id=${client._id}`)}
                                     >
-                                        <TableCell component="th" scope="row">{client.clientName}</TableCell>
+
+                                        <TableCell component="th" scope="row">
+                                            {client.clientName}
+                                        </TableCell>
                                         <TableCell>{client.orgName}</TableCell>
                                         <TableCell>{client.clientEmail}</TableCell>
                                         <TableCell>{client.clientPhone}</TableCell>

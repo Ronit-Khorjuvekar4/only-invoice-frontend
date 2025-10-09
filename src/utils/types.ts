@@ -5,3 +5,11 @@ export interface ClientInterface{
     orgName:String,
     clientPhone:number
 }[]
+
+export interface AllInvoicesProps {
+  searchParams: {
+    client_id?: string;
+    search?: string;
+    [key: string]: string | string[] | undefined;
+  };
+}
