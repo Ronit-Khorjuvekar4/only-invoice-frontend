@@ -5,7 +5,6 @@ import { ClientInterface } from "@/utils/types";
 export default async function Home() {
 
   const clientData = await axiosInstance.get("clients")
-
    
   return (
     <>

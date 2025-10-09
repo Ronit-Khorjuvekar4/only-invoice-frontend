@@ -1,5 +1,6 @@
 export interface ClientInterface{
     _id:String,
+    orgId:String,
     clientName:String,
     clientEmail:String,
     orgName:String,

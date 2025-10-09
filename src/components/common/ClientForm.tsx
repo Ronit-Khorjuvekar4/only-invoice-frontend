@@ -11,9 +11,9 @@ const ClientForm = () => {
         clientPhone: '',
         clientAddress1: '',
         clientAddress2: '',
+
     });
 
-    // Handle form data change
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({
@@ -94,7 +94,7 @@ const ClientForm = () => {
 
             <TextField
                 label="Flat / House No / Locality"
-                name="clientAddress"
+                name="clientAddress1"
                 value={formData.clientAddress1}
                 onChange={handleInputChange}
                 fullWidth

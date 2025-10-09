@@ -3,7 +3,9 @@ import { AllInvoicesProps } from "@/utils/types";
 
 
 const AddInvoice = async({ searchParams }: AllInvoicesProps) => {
-    const clientId =  await searchParams.client_id; 
+    const params  =  await searchParams; 
+
+    const clientId = params.client_id
 
     return(
             <AddInvoiceForm client_id={clientId as string}/>
