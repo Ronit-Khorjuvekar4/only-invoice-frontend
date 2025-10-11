@@ -336,7 +336,7 @@
 
 // export default AddInvoiceForm;
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
     Box,
     Grid,
@@ -352,6 +352,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import axiosInstance from '@/utils/axiosInstance';
+import { LineItem,InvoiceFormData  } from '@/utils/types';
 
 const MOCK_SERVICES = [
     { id: 'seo', name: 'SEO Optimization' },
@@ -359,22 +360,6 @@ const MOCK_SERVICES = [
     { id: 'content', name: 'Content Strategy' },
     { id: 'social', name: 'Social Media Management' },
 ];
-
-interface LineItem {
-    id: string;
-    serviceId: string;
-    amount: number | string;
-    details: string;
-}
-
-interface InvoiceFormData {
-    startDate: string;
-    dueDate: string;
-    status: 'Paid' | 'Pending' | 'Advanced Paid' | 'Overdue' | string;
-    discount: number | string;
-    advanceAmount: number | string;
-    items: LineItem[];
-}
 
 const initialLineItem: LineItem = {
     id: '',
@@ -442,7 +427,7 @@ const AddInvoiceForm = ({ client_id }: { client_id: string }) => {
     const remainingBalance =
         formData.status === 'Advanced Paid'
             ? Math.max(0, finalTotal - (Number(formData.advanceAmount) || 0))
-            : 10;
+            : 0;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

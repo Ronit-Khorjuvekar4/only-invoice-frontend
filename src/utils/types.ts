@@ -1,10 +1,10 @@
-export interface ClientInterface{
-    _id:String,
-    orgId:String,
-    clientName:String,
-    clientEmail:String,
-    orgName:String,
-    clientPhone:number
+export interface ClientInterface {
+  _id: String,
+  orgId: String,
+  clientName: String,
+  clientEmail: String,
+  orgName: String,
+  clientPhone: number
 }[]
 
 export interface AllInvoicesProps {
@@ -14,3 +14,37 @@ export interface AllInvoicesProps {
     [key: string]: string | string[] | undefined;
   };
 }
+
+export interface LineItem {
+  id: string;
+  serviceId: string;
+  amount: number | string;
+  details: string;
+}
+
+export interface InvoiceFormData {
+  startDate: string;
+  dueDate: string;
+  status: 'Paid' | 'Pending' | 'Advanced Paid' | 'Overdue' | string;
+  discount: number | string;
+  advanceAmount: number | string;
+  items: LineItem[];
+}
+
+interface invoiceNumber {
+  dueDate: string;
+  invoiceNumber: string;
+  status: string;
+  _id: string
+}
+
+export interface InvoiceListings {
+  discount: number | string;
+  advanceAmount: number | string;
+  finalTotal: number;
+  remainingBalance: number;
+  subTotal: number;
+  _id: string;
+  items: LineItem[];
+  invoiceNumber:invoiceNumber
+}[]

@@ -1,4 +1,5 @@
 import InvoiceListing from "@/components/common/InvoiceListing";
+import axiosInstance from "@/utils/axiosInstance";
 import { AllInvoicesProps } from "@/utils/types";
 
 const AllInvoices = async ({ searchParams }: AllInvoicesProps) => {
@@ -6,8 +7,18 @@ const AllInvoices = async ({ searchParams }: AllInvoicesProps) => {
 
     const clientId = params.client_id
 
+    const response = await axiosInstance.get(
+                '/get-invoice',
+                {
+                    params: {
+                        clientId: clientId
+                    }
+                }
+            );
+
+
     return (
-            <InvoiceListing client_id={clientId as string} />
+            <InvoiceListing allInvoices={response.data} />
     );
 }
 
