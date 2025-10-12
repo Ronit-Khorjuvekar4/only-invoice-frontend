@@ -31,11 +31,22 @@ export interface InvoiceFormData {
   items: LineItem[];
 }
 
-interface invoiceNumber {
+interface invoice_id {
   dueDate: string;
   invoiceNumber: string;
   status: string;
   _id: string
+}
+
+interface clientId{
+  _id:string;
+  orgName:string
+  clientName?:string;
+  clientEmail?:string;
+  clientPhone?:number;
+  clientAddress1?:string;
+  clientAddress2?:string;
+  orgId?:string
 }
 
 export interface InvoiceListings {
@@ -46,5 +57,6 @@ export interface InvoiceListings {
   subTotal: number;
   _id: string;
   items: LineItem[];
-  invoiceNumber:invoiceNumber
+  invoice_id:invoice_id;
+  clientId:clientId
 }[]
