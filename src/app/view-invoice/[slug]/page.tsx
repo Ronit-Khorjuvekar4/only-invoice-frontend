@@ -19,7 +19,7 @@ const ViewInvoice = async({ searchParams }: AllInvoicesProps) => {
 
     return(
         <>
-            <SingleInvoice data={response.data} />
+            <SingleInvoice data={response.data.data} />
         </>
     )
 }

@@ -28,9 +28,7 @@ const ClientForm = () => {
 
         try {
             const response = await axiosInstance.post('clients', formData);
-            if(response.data.msg === "Client Added"){
-                console.log(response.data.msg)
-            }
+            console.log(response)
         } catch (err: any) {
             if (err.response) {
                 console.error('Error Response:', err.response.data);

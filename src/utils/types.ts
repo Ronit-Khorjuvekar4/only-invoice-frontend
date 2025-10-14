@@ -29,6 +29,7 @@ export interface InvoiceFormData {
   discount: number | string;
   advanceAmount: number | string;
   items: LineItem[];
+  isEdit?: boolean;
 }
 
 interface invoice_id {
@@ -38,15 +39,15 @@ interface invoice_id {
   _id: string
 }
 
-interface clientId{
-  _id:string;
-  orgName:string
-  clientName?:string;
-  clientEmail?:string;
-  clientPhone?:number;
-  clientAddress1?:string;
-  clientAddress2?:string;
-  orgId?:string
+interface clientId {
+  _id: string;
+  orgName: string
+  clientName?: string;
+  clientEmail?: string;
+  clientPhone?: number;
+  clientAddress1?: string;
+  clientAddress2?: string;
+  orgId?: string
 }
 
 export interface InvoiceListings {
@@ -57,6 +58,6 @@ export interface InvoiceListings {
   subTotal: number;
   _id: string;
   items: LineItem[];
-  invoice_id:invoice_id;
-  clientId:clientId
+  invoice_id: invoice_id;
+  clientId: clientId
 }[]

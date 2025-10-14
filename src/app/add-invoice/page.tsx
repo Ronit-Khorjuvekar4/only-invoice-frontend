@@ -6,9 +6,11 @@ const AddInvoice = async({ searchParams }: AllInvoicesProps) => {
     const params  =  await searchParams; 
 
     const clientId = params.client_id
+    const invoiceId = params.invoice_id
+
 
     return(
-            <AddInvoiceForm client_id={clientId as string}/>
+            <AddInvoiceForm client_id={clientId as string} invoice_id={invoiceId as string}/>
     )
 }
 

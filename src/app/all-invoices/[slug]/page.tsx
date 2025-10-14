@@ -18,7 +18,7 @@ const AllInvoices = async ({ searchParams }: AllInvoicesProps) => {
 
 
     return (
-            <InvoiceListing clientId={clientId as string} allInvoices={response.data} />
+            <InvoiceListing clientId={clientId as string} allInvoices={response.data.data} />
     );
 }
 

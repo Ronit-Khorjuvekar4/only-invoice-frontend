@@ -19,10 +19,12 @@ import {
     IconButton
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { Add as AddIcon, Receipt as ReceiptIcon, CalendarToday as CalendarTodayIcon, AttachMoney as AttachMoneyIcon, Edit } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Add as AddIcon, Receipt as ReceiptIcon, CalendarToday as CalendarTodayIcon, AttachMoney as AttachMoneyIcon } from '@mui/icons-material';
 import { useEffect, useState } from "react";
 import { InvoiceListings } from '../../utils/types'
 import { useRouter } from 'next/navigation'
+import axiosInstance from "@/utils/axiosInstance";
 
 
 const STATUS_COLORS: Record<string, string> = {
@@ -34,7 +36,17 @@ const STATUS_COLORS: Record<string, string> = {
 
 const InvoiceListing = ({ clientId, allInvoices }: { clientId: string, allInvoices: InvoiceListings[] }) => {
     const router = useRouter()
-    console.log(allInvoices)
+
+    const deleteInvoice = async (invoiceId : string) => {
+        const response = await axiosInstance.delete('/delete-invoice',
+            {
+                params:{
+                    invoiceId:invoiceId
+                }
+            }
+        )
+        console.log(response)
+    }
 
     return (
         <>
@@ -166,11 +178,13 @@ const InvoiceListing = ({ clientId, allInvoices }: { clientId: string, allInvoic
                                         </TableCell>
                                         <TableCell >
                                             <IconButton aria-label="edit" >
-                                                <EditIcon color="primary" fontSize="small" onClick={() => { router.push("/") }} />
+                                                <EditIcon color="primary" fontSize="small" onClick={() => { router.push(`/add-invoice?client_id=${invoice.clientId._id}&invoice_id=${invoice.invoice_id._id}`) }} />
                                             </IconButton>
                                         </TableCell>
                                         <TableCell>
-
+                                            <IconButton aria-label="edit" >
+                                                <DeleteIcon color="error" fontSize="small" onClick={() => deleteInvoice(invoice.invoice_id._id)} />
+                                            </IconButton>
                                         </TableCell>
                                     </TableRow>
                                 ))}

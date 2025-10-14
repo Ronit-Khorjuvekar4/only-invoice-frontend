@@ -8,7 +8,7 @@ export default async function Home() {
    
   return (
     <>
-      <ClientListing clients={clientData.data}/>
+      <ClientListing clients={clientData.data.data}/>
     </>
   );
 }
