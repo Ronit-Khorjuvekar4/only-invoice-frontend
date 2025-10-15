@@ -55,7 +55,7 @@ const ClientListing = ({ clients }: { clients: ClientInterface[] }) => {
                                     <TableRow
                                         key={client._id.toString()}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 }, '&:hover': { backgroundColor: 'action.hover', cursor:'pointer' } }}
-                                        onClick={() => router.push(`/all-invoices/${client.orgName.replace(" ","-")}?client_id=${client._id}`)}
+                                        onClick={() => router.push(`/main/all-invoices/${client.orgName.replace(" ","-")}?client_id=${client._id}`)}
                                     >
                                         <TableCell component="th" scope='row'>
                                             {client.orgId}

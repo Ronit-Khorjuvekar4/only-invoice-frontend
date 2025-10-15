@@ -1,30 +1,32 @@
 // src/components/common/navbar.jsx
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import Link from 'next/link';
+import { AuthContext } from '@/context/AuthContext';
 
 const navs = [
   {
     navName: 'All Client List',
-    navLink: "/"
+    navLink: "/main/all-clients"
   },
   {
     navName: 'Add a Client',
-    navLink: "/add-client"
+    navLink: "/main/add-client"
   }
 ]
 
 const Navbar = () => {
+
+  const { user, logout } = useContext(AuthContext)
+
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  if (!isClient) return null;
-
-
+  if (!user) return null;
 
   return (
     <AppBar position="static">
@@ -43,6 +45,11 @@ const Navbar = () => {
         <Box sx={{ ml: 'auto' }}>
           <img src="/logo.png" alt="Company Logo" style={{ height: 40 }} />
         </Box>
+
+        <Box>
+          <Button onClick={logout} sx={{ color: '#fff' }}>Logout</Button>
+        </Box>
+
       </Toolbar>
     </AppBar>
   );

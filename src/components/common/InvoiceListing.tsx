@@ -95,7 +95,7 @@ const InvoiceListing = ({ clientId, allInvoices }: { clientId: string, allInvoic
                                         sx={{ cursor: 'pointer' }}
                                     >
                                         <TableCell
-                                            onClick={() => router.push(`/view-invoice/${invoice.clientId.orgName.replace(" ", "-")}?invoice_id=${invoice.invoice_id._id}`)}
+                                            onClick={() => router.push(`/main/view-invoice/${invoice.clientId.orgName.replace(" ", "-")}?invoice_id=${invoice.invoice_id._id}`)}
                                         >
                                             {invoice.invoice_id.invoiceNumber}
                                         </TableCell>
@@ -178,7 +178,7 @@ const InvoiceListing = ({ clientId, allInvoices }: { clientId: string, allInvoic
                                         </TableCell>
                                         <TableCell >
                                             <IconButton aria-label="edit" >
-                                                <EditIcon color="primary" fontSize="small" onClick={() => { router.push(`/add-invoice?client_id=${invoice.clientId._id}&invoice_id=${invoice.invoice_id._id}`) }} />
+                                                <EditIcon color="primary" fontSize="small" onClick={() => { router.push(`/main/add-invoice?client_id=${invoice.clientId._id}&invoice_id=${invoice.invoice_id._id}`) }} />
                                             </IconButton>
                                         </TableCell>
                                         <TableCell>
